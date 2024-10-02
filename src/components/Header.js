@@ -21,11 +21,11 @@ const Header = ({ grouping, setGrouping, ordering, setOrdering }) => {
         {dropdownVisible && (
           <div className="dropdown-menu">
             <div className="dropdown">
-              <label>Grouping:</label>
+              <label>Grouping</label>
               <Dropdown options={groupOptions} selected={grouping} onChange={setGrouping} />
             </div>
             <div className="dropdown">
-              <label>Ordering:</label>
+              <label>Ordering</label>
               <Dropdown options={orderOptions} selected={ordering} onChange={setOrdering} />
             </div>
           </div>
