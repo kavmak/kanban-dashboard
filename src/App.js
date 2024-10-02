@@ -20,9 +20,9 @@ const App = () => {
   const sortTickets = (tickets) => {
     return tickets.sort((a, b) => {
       if (ordering === 'Priority') {
-        return b.priority - a.priority; // Descending order for Priority
+        return a.priority - b.priority; // Ascending order for Priority (numerical)
       }
-      return a.title.localeCompare(b.title); // Ascending order for Title
+      return a.title.localeCompare(b.title); // Ascending order for Title (alphabetical)
     });
   };
 
@@ -58,10 +58,20 @@ const App = () => {
 
   return (
     <div className="App">
-      <Header grouping={grouping} setGrouping={setGrouping} ordering={ordering} setOrdering={setOrdering} />
-      <Board tickets={groupedTickets()} users={users} grouping={grouping} /> {/* Pass grouping to Board */}
+      <Header 
+        grouping={grouping} 
+        setGrouping={setGrouping} 
+        ordering={ordering} 
+        setOrdering={setOrdering} 
+      />
+      <Board 
+        tickets={groupedTickets()} 
+        users={users} 
+        grouping={grouping} 
+      /> {/* Pass grouping to Board */}
     </div>
   );
 };
 
 export default App;
+

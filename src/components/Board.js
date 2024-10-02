@@ -35,11 +35,33 @@ const userIcons = {
   // Add more user icons as needed
 };
 
+const normalizePriority = (priority) => {
+  switch (priority) {
+    case 0: return 'NoPriority';
+    case 1: return 'Urgent';
+    case 2: return 'High';
+    case 3: return 'Medium';
+    case 4: return 'Low';
+    default: return 'NoPriority';
+  }
+};
+
+const normalizeStatus = (status) => {
+  switch (status.toLowerCase()) {
+    case 'backlog': return 'Backlog';
+    case 'todo': return 'Todo';
+    case 'in progress': return 'In Progress';
+    case 'done': return 'Done';
+    case 'canceled': return 'Canceled';
+    default: return 'Backlog';
+  }
+};
+
 const getIconForGroup = (group, grouping) => {
   if (grouping === 'Priority') {
-    return priorityIcons[group] || null;
+    return priorityIcons[normalizePriority(group)] || null;
   } else if (grouping === 'Status') {
-    return statusIcons[group] || null;
+    return statusIcons[normalizeStatus(group)] || null;
   } else if (grouping === 'User') {
     return userIcons[group] || null;
   }

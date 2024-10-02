@@ -29,6 +29,29 @@ const statusIcons = {
   Canceled: canceledIcon,
 };
 
+// Helper functions to normalize the values
+const normalizePriority = (priority) => {
+  switch (priority) {
+    case 0: return 'NoPriority';
+    case 1: return 'Urgent';
+    case 2: return 'High';
+    case 3: return 'Medium';
+    case 4: return 'Low';
+    default: return 'NoPriority';
+  }
+};
+
+const normalizeStatus = (status) => {
+  switch (status.toLowerCase()) {
+    case 'backlog': return 'Backlog';
+    case 'todo': return 'Todo';
+    case 'in progress': return 'In Progress';
+    case 'done': return 'Done';
+    case 'canceled': return 'Canceled';
+    default: return 'Backlog';
+  }
+};
+
 const Card = ({ ticket, grouping }) => {
   const { id, title, status, priority, userAvatar, featureRequest, tag } = ticket;
 
@@ -51,11 +74,7 @@ const Card = ({ ticket, grouping }) => {
       {grouping === 'Priority' && (
         <>
           <div className="notification-icon">
-            {statusIcons[status] ? (
-              <img src={statusIcons[status]} alt={status} />
-            ) : (
-              <span>Status Icon Missing</span>
-            )}
+            <img src={statusIcons[normalizeStatus(status)]} alt={status} />
           </div>
           {featureRequest && <div className="feature-request"><p>{featureRequest}</p></div>}
         </>
@@ -64,20 +83,12 @@ const Card = ({ ticket, grouping }) => {
       {grouping === 'User' && (
         <>
           <div className="notification-icon">
-            {statusIcons[status] ? (
-              <img src={statusIcons[status]} alt={status} />
-            ) : (
-              <span>Status Icon Missing</span>
-            )}
-            <span>{status}</span>
+            <img src={statusIcons[normalizeStatus(status)]} alt={status} />
+            
           </div>
           <div className="notification-icon">
-            {priorityIcons[priority] ? (
-              <img src={priorityIcons[priority]} alt={priority} />
-            ) : (
-              <span>Priority Icon Missing</span>
-            )}
-            <span>{priority}</span>
+            <img src={priorityIcons[normalizePriority(priority)]} alt={priority} />
+            
           </div>
           {featureRequest && <div className="feature-request"><p>{featureRequest}</p></div>}
         </>
@@ -86,11 +97,7 @@ const Card = ({ ticket, grouping }) => {
       {grouping === 'Status' && (
         <>
           <div className="priority-icon">
-            {priorityIcons[priority] ? (
-              <img src={priorityIcons[priority]} alt={priority} />
-            ) : (
-              <span>Priority Icon Missing</span>
-            )}
+            <img src={priorityIcons[normalizePriority(priority)]} alt={priority} />
           </div>
           {featureRequest && <div className="feature-request"><p>{featureRequest}</p></div>}
         </>
