@@ -57,8 +57,9 @@
 .ticket-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   background-color: white;
+  gap:15px;
 }
 
 /* Ticket tag style */
@@ -70,7 +71,7 @@
   border: 0.5px solid #0502;
   font-family: Arial, Helvetica, sans-serif;
   color: rgb(130, 130, 130);
-  margin-left: 35px;
+  /* margin-left: 35px; */
 }
 
 /* Dropdown menu styling */
@@ -137,7 +138,7 @@
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   margin-bottom: 1rem;
-  height: 110px;
+  height: 96px;
 }
 
 .notification-icon {
@@ -215,4 +216,24 @@
   display: flex;
   justify-content: space-between;
   background-color: white;
+}
+
+.progress-icon{
+  margin-right: 5px;
+}
+.titles-club{
+  display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+    background: transparent;
+}
+
+#feature-request-left {
+  margin-top:-5px;
+  float: left; /* Aligns the feature request to the left */
+  margin-right: 10px; /* Adds spacing between the feature request and other content */
+  font-size: 0.9em; /* Adjust font size for better readability */
+  color: #666; /* Optional: Style the text color */
+  display: flex;
+  align-items: center; /* Align vertically in case of multiple lines */
 }

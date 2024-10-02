@@ -13,6 +13,7 @@ import inProgress from '../assets/icons/in-progress.svg';
 import backlogIcon from '../assets/icons/Backlog.svg';
 import todoIcon from '../assets/icons/To-do.svg';
 
+// Priority icons mapping
 const priorityIcons = {
   NoPriority: svg1,
   Urgent: svg2,
@@ -21,6 +22,7 @@ const priorityIcons = {
   Low: svg5,
 };
 
+// Status icons mapping
 const statusIcons = {
   Backlog: backlogIcon,
   Todo: todoIcon,
@@ -29,12 +31,7 @@ const statusIcons = {
   Canceled: canceledIcon,
 };
 
-const userIcons = {
-  User1: addicon,
-  User2: addicon,
-  // Add more user icons as needed
-};
-
+// Helper functions to normalize the values
 const normalizePriority = (priority) => {
   switch (priority) {
     case 0: return 'NoPriority';
@@ -62,8 +59,6 @@ const getIconForGroup = (group, grouping) => {
     return priorityIcons[normalizePriority(group)] || null;
   } else if (grouping === 'Status') {
     return statusIcons[normalizeStatus(group)] || null;
-  } else if (grouping === 'User') {
-    return userIcons[group] || null;
   }
   return null;
 };

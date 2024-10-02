@@ -55,6 +55,9 @@ const normalizeStatus = (status) => {
 const Card = ({ ticket, grouping }) => {
   const { id, title, status, priority, userAvatar, featureRequest, tag } = ticket;
 
+  // Conditionally get the status icon
+  const progressIcon = statusIcons[normalizeStatus(status)];
+
   return (
     <div className="ticket-card">
       <div className="heading-card">
@@ -68,42 +71,42 @@ const Card = ({ ticket, grouping }) => {
         )}
       </div>
 
-      <div className="ticket-title">{title}</div>
+      <div className="ticket-title">
+        {/* Conditionally display the progress icon before the title if grouped by User or Priority */}
+        <div className='titles-club'>
+          {(grouping === 'User' || grouping === 'Priority') && (
+            <img src={progressIcon} alt="Progress Icon" className="progress-icon" />
+          )}
+          {title}
+        </div>
+      </div>
 
-      {/* Conditional rendering based on grouping */}
+      {/* Render icons based on the grouping */}
       {grouping === 'Priority' && (
-        <>
-          <div className="notification-icon">
-            <img src={statusIcons[normalizeStatus(status)]} alt={status} />
-          </div>
-          {featureRequest && <div className="feature-request"><p>{featureRequest}</p></div>}
-        </>
+       <div className="ticket-footer">
+       {featureRequest && <div id="feature-request-left"><p>{featureRequest}</p></div>}
+     </div>
+     
       )}
 
       {grouping === 'User' && (
-        <>
-          <div className="notification-icon">
-            <img src={statusIcons[normalizeStatus(status)]} alt={status} />
-            
-          </div>
-          <div className="notification-icon">
-            <img src={priorityIcons[normalizePriority(priority)]} alt={priority} />
-            
-          </div>
+        <span className="notification-icon">
+          <img src={priorityIcons[normalizePriority(priority)]} alt={priority} />
           {featureRequest && <div className="feature-request"><p>{featureRequest}</p></div>}
-        </>
+        </span>
       )}
 
-      {grouping === 'Status' && (
-        <>
-          <div className="priority-icon">
-            <img src={priorityIcons[normalizePriority(priority)]} alt={priority} />
-          </div>
-          {featureRequest && <div className="feature-request"><p>{featureRequest}</p></div>}
-        </>
-      )}
-
+      {/* Ticket footer logic for Status grouping */}
       <div className="ticket-footer">
+        {grouping === 'Status' && (
+          <>
+            <span className="priority-footer">
+              <img src={priorityIcons[normalizePriority(priority)]} alt={priority} />
+              {/* Render the feature request in the footer if present */}
+              {featureRequest && <div className="feature-request-footer"><p>{featureRequest}</p></div>}
+            </span>
+          </>
+        )}
         <span className="ticket-tag">{tag}</span>
       </div>
     </div>
