@@ -1,0 +1,31 @@
+/* .kanban-board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  } */
+  
+  .tickets-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .ticket {
+    background-color: #f4f4f4;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    border-radius: 5px;
+  }
+  
+  .priority-4 { background-color: red; }
+  .priority-3 { background-color: orange; }
+  .priority-2 { background-color: yellow; }
+  .priority-1 { background-color: green; }
+  .priority-0 { background-color: grey; }
+  
+  .controls {
+    margin-bottom: 20px;
+  }
+  
